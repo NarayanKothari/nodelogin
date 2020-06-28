@@ -241,7 +241,7 @@ router.get('/editProfileReq',ensureAuthenticated,(req,res)=>{
 	res.render('editProfile')
 })
 router.post('/editProfile', ensureAuthenticated, function(req, res, next){	
-    User.update({ _id: req.user.id}, req.body, function(err, user){
+    User.updateOne({ _id: req.user.id}, req.body, function(err, user){
         if(!user){
             req.flash('error', 'No account found');
             return res.redirect('/edit');
