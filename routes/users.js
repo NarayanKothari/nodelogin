@@ -5,6 +5,7 @@ const passport = require('passport');
 const async = require('async');
 const crypto = require('crypto');
 var nodemailer = require('nodemailer');
+const {ensureAuthenticated} = require('../config/auth');
 
 // User model
 const User = require('../models/User');
@@ -232,6 +233,9 @@ router.get('/logout',(req,res,) =>{
 	res.redirect('/users/login');
 })
 
+router.get('/profile', ensureAuthenticated, (req,res) => {
+	res.render('profile',{user: req.user})
+})
 
 
 module.exports = router;
