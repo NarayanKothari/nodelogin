@@ -237,5 +237,26 @@ router.get('/profile', ensureAuthenticated, (req,res) => {
 	res.render('profile',{user: req.user})
 })
 
-
+router.get('/editProfileReq',ensureAuthenticated,(req,res)=>{
+	res.render('editProfile')
+})
+router.post('/editProfile', ensureAuthenticated, function(req, res, next){	
+    User.update({ _id: req.user.id}, req.body, function(err, user){
+        if(!user){
+            req.flash('error', 'No account found');
+            return res.redirect('/edit');
+        }
+        var nameNew = req.body.name;
+        var emailNew = req.body.email;
+        if(!nameNew || !emailNew ){
+           req.flash('success_msg', 'invalid user name or email');
+           res.redirect('editProfileReq')
+        }
+        else{
+            user.email = emailNew;
+            user.name = nameNew;
+            res.redirect('/dashboard');
+        }
+    });
+})
 module.exports = router;
