@@ -1,5 +1,12 @@
 <h1 class="mt-4">Profile Page</h1>
+<% if(file){ %>
+    <img src="http://localhost:5000/users/image/<%= file.filename %>" alt="">
+</div>	
+<% } else { %>
+<p>Profile pic has not been set yet</p>
+<% } %>
 <p class="lead mb-3">Name <%= user.name %></p>
 <p class="lead mb-3">Email <%= user.email %></p>
 <a href="/dashboard" class="btn btn-secondary">Dashbard</a>
 <a href="/users/editProfileReq" class="btn btn-secondary">Edit Profile</a>
+<a href="/users/upload_image" class="btn btn-secondary">Upload Image</a>

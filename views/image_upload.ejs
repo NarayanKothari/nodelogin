@@ -1,0 +1,20 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body">
+      <h1 class="text-center mb-3"><i class="fas fa-user"></i> Upload Image</h1>
+      <%- include('./partials/messages.ejs') %>
+      <form action="/users/upload_image" method="POST" enctype="multipart/form-data"> 
+        <div class="form-group">
+          <label for="image">Upload Image</label> 
+          <input 
+          type="file" 
+          id="image" 
+          name="image" 
+          value="" required> 
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">upload</button>
+      </form>
+      <p class="lead mt-4"> <a href="/users/profile">Return to Profile</a></p>
+    </div>
+  </div>
+</div>
