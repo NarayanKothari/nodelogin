@@ -52,7 +52,6 @@ const upload = multer({ storage });
 
 // Uploading the image 
 router.post('/upload_image', upload.single('image'), ensureAuthenticated,(req, res, next) => { 
-//	    User.update({ _id: req.user.id}, req.body, function(err, user){
 	    User.findOne({ email: req.user.email})
 	    .then(user =>{
 	    	if(!user){
@@ -294,6 +293,7 @@ router.get('/logout',(req,res,) =>{
 	res.redirect('/users/login');
 })
 
+//Profile Page request
 router.get('/profile', ensureAuthenticated, (req,res) => {
 	gfs.files.findOne({ filename: req.user.img }, (err, file) => {
 		if (!file || file.length === 0) {
@@ -306,6 +306,7 @@ router.get('/profile', ensureAuthenticated, (req,res) => {
 	});
 })
 
+//Edit Profile route
 router.get('/editProfileReq',ensureAuthenticated,(req,res)=>{
 	res.render('editProfile')
 })
@@ -330,6 +331,7 @@ router.post('/editProfile', ensureAuthenticated, function(req, res, next){
     });
 })
 
+//Route to get the image and send it using readstream
 router.get('/image/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
