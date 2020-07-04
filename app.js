@@ -53,6 +53,9 @@ app.use((req, res, next) =>{
 // Routes
 app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
+app.use('/users',require('./routes/forget_password'));
+app.use('/users',require('./routes/edit_profile'));
+app.use('/users',require('./routes/image_upload'));
 
 
 const PORT = process.env.PORT || 5000;	
