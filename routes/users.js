@@ -115,6 +115,7 @@ router.post('/login',(req,res,next) =>{
 	})(req, res, next);
 })
 
+router.use(express.static('routes'))
 //Logout Handle
 router.get('/logout',(req,res,) =>{
 	req.logout();
@@ -129,5 +130,7 @@ router.get('/profile', ensureAuthenticated, (req,res) => {
 	});
 })
 
-
+router.get('/chat', ensureAuthenticated, (req,res) => {
+		res.render('chat',{ user:req.user});
+	});
 module.exports = router;
